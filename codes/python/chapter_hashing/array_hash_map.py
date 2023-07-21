@@ -30,9 +30,7 @@ class ArrayHashMap:
         """查询操作"""
         index: int = self.hash_func(key)
         pair: Entry = self.buckets[index]
-        if pair is None:
-            return None
-        return pair.val
+        return None if pair is None else pair.val
 
     def put(self, key: int, val: str) -> None:
         """添加操作"""
@@ -48,26 +46,17 @@ class ArrayHashMap:
 
     def entry_set(self) -> list[Entry]:
         """获取所有键值对"""
-        result: list[Entry] = []
-        for pair in self.buckets:
-            if pair is not None:
-                result.append(pair)
+        result: list[Entry] = [pair for pair in self.buckets if pair is not None]
         return result
 
     def key_set(self) -> list[int]:
         """获取所有键"""
-        result: list[int] = []
-        for pair in self.buckets:
-            if pair is not None:
-                result.append(pair.key)
+        result: list[int] = [pair.key for pair in self.buckets if pair is not None]
         return result
 
     def value_set(self) -> list[str]:
         """获取所有值"""
-        result: list[str] = []
-        for pair in self.buckets:
-            if pair is not None:
-                result.append(pair.val)
+        result: list[str] = [pair.val for pair in self.buckets if pair is not None]
         return result
 
     def print(self) -> None:

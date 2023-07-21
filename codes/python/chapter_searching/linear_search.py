@@ -12,11 +12,7 @@ from modules import *
 
 def linear_search_array(nums: list[int], target: int) -> int:
     """线性查找（数组）"""
-    # 遍历数组
-    for i in range(len(nums)):
-        if nums[i] == target:  # 找到目标元素，返回其索引
-            return i
-    return -1  # 未找到目标元素，返回 -1
+    return next((i for i in range(len(nums)) if nums[i] == target), -1)
 
 
 def linear_search_linkedlist(head: ListNode, target: int) -> ListNode | None:

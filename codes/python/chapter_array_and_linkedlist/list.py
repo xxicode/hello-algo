@@ -4,6 +4,7 @@ Created Time: 2022-11-25
 Author: Krahets (krahets@163.com)
 """
 
+
 """Driver Code"""
 if __name__ == "__main__":
     # 初始化列表
@@ -22,12 +23,7 @@ if __name__ == "__main__":
     arr.clear()
     print("清空列表后 arr =", arr)
 
-    # 尾部添加元素
-    arr.append(1)
-    arr.append(3)
-    arr.append(2)
-    arr.append(5)
-    arr.append(4)
+    arr.extend((1, 3, 2, 5, 4))
     print("添加元素后 arr =", arr)
 
     # 中间插入元素
@@ -38,16 +34,8 @@ if __name__ == "__main__":
     arr.pop(3)
     print("删除索引 3 处的元素，得到 arr =", arr)
 
-    # 通过索引遍历列表
-    count: int = 0
-    for i in range(len(arr)):
-        count += 1
-
-    # 直接遍历列表元素
-    count: int = 0
-    for n in arr:
-        count += 1
-
+    count: int = len(arr)
+    count: int = len(arr)
     # 拼接两个列表
     arr1: list[int] = [6, 8, 7, 10, 9]
     arr += arr1

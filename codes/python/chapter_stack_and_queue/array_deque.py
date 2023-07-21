@@ -86,11 +86,7 @@ class ArrayDeque:
 
     def to_array(self) -> list[int]:
         """返回数组用于打印"""
-        # 仅转换有效长度范围内的列表元素
-        res = []
-        for i in range(self.__size):
-            res.append(self.__nums[self.index(self.__front + i)])
-        return res
+        return [self.__nums[self.index(self.__front + i)] for i in range(self.__size)]
 
 
 """Driver Code"""
