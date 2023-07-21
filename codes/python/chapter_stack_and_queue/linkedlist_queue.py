@@ -34,11 +34,9 @@ class LinkedListQueue:
         # 如果队列为空，则令头、尾节点都指向该节点
         if self.__front is None:
             self.__front = node
-            self.__rear = node
-        # 如果队列不为空，则将该节点添加到尾节点后
         else:
             self.__rear.next = node
-            self.__rear = node
+        self.__rear = node
         self.__size += 1
 
     def pop(self) -> int:

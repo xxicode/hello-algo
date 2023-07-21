@@ -43,9 +43,7 @@ class LinkedListStack:
     def peek(self) -> int:
         """访问栈顶元素"""
         # 判空处理
-        if not self.__peek:
-            return None
-        return self.__peek.val
+        return None if not self.__peek else self.__peek.val
 
     def to_list(self) -> list[int]:
         """转化为列表用于打印"""

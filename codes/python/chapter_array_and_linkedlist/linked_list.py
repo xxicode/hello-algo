@@ -48,6 +48,7 @@ def find(head: ListNode, target: int) -> int:
 
 
 """Driver Code"""
+
 if __name__ == "__main__":
     # 初始化链表
     # 初始化各个节点
@@ -76,8 +77,8 @@ if __name__ == "__main__":
 
     # 访问节点
     node: ListNode = access(n0, 3)
-    print("链表中索引 3 处的节点的值 = {}".format(node.val))
+    print(f"链表中索引 3 处的节点的值 = {node.val}")
 
     # 查找节点
     index: int = find(n0, 2)
-    print("链表中值为 2 的节点的索引 = {}".format(index))
+    print(f"链表中值为 2 的节点的索引 = {index}")

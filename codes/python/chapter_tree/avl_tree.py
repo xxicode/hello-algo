@@ -24,9 +24,7 @@ class AVLTree:
     def height(self, node: TreeNode | None) -> int:
         """获取节点高度"""
         # 空节点高度为 -1 ，叶节点高度为 0
-        if node is not None:
-            return node.height
-        return -1
+        return node.height if node is not None else -1
 
     def __update_height(self, node: TreeNode | None):
         """更新节点高度"""
@@ -36,10 +34,7 @@ class AVLTree:
     def balance_factor(self, node: TreeNode | None) -> int:
         """获取平衡因子"""
         # 空节点平衡因子为 0
-        if node is None:
-            return 0
-        # 节点平衡因子 = 左子树高度 - 右子树高度
-        return self.height(node.left) - self.height(node.right)
+        return 0 if node is None else self.height(node.left) - self.height(node.right)
 
     def __right_rotate(self, node: TreeNode | None) -> TreeNode | None:
         """右旋操作"""
@@ -73,22 +68,17 @@ class AVLTree:
         balance_factor = self.balance_factor(node)
         # 左偏树
         if balance_factor > 1:
-            if self.balance_factor(node.left) >= 0:
-                # 右旋
-                return self.__right_rotate(node)
-            else:
+            if self.balance_factor(node.left) < 0:
                 # 先左旋后右旋
                 node.left = self.__left_rotate(node.left)
-                return self.__right_rotate(node)
-        # 右偏树
+            # 右旋
+            return self.__right_rotate(node)
         elif balance_factor < -1:
-            if self.balance_factor(node.right) <= 0:
-                # 左旋
-                return self.__left_rotate(node)
-            else:
+            if self.balance_factor(node.right) > 0:
                 # 先右旋后左旋
                 node.right = self.__right_rotate(node.right)
-                return self.__left_rotate(node)
+            # 左旋
+            return self.__left_rotate(node)
         # 平衡树，无需旋转，直接返回
         return node
 
@@ -126,22 +116,21 @@ class AVLTree:
             node.left = self.__remove_helper(node.left, val)
         elif val > node.val:
             node.right = self.__remove_helper(node.right, val)
-        else:
-            if node.left is None or node.right is None:
-                child = node.left or node.right
-                # 子节点数量 = 0 ，直接删除 node 并返回
-                if child is None:
-                    return None
-                # 子节点数量 = 1 ，直接删除 node
-                else:
-                    node = child
+        elif node.left is None or node.right is None:
+            child = node.left or node.right
+            # 子节点数量 = 0 ，直接删除 node 并返回
+            if child is None:
+                return None
+            # 子节点数量 = 1 ，直接删除 node
             else:
-                # 子节点数量 = 2 ，则将中序遍历的下个节点删除，并用该节点替换当前节点
-                temp = node.right
-                while temp.left is not None:
-                    temp = temp.left
-                node.right = self.__remove_helper(node.right, temp.val)
-                node.val = temp.val
+                node = child
+        else:
+            # 子节点数量 = 2 ，则将中序遍历的下个节点删除，并用该节点替换当前节点
+            temp = node.right
+            while temp.left is not None:
+                temp = temp.left
+            node.right = self.__remove_helper(node.right, temp.val)
+            node.val = temp.val
         # 更新节点高度
         self.__update_height(node)
         # 2. 执行旋转操作，使该子树重新恢复平衡
@@ -170,12 +159,12 @@ if __name__ == "__main__":
 
     def test_insert(tree: AVLTree, val: int):
         tree.insert(val)
-        print("\n插入节点 {} 后，AVL 树为".format(val))
+        print(f"\n插入节点 {val} 后，AVL 树为")
         print_tree(tree.root)
 
     def test_remove(tree: AVLTree, val: int):
         tree.remove(val)
-        print("\n删除节点 {} 后，AVL 树为".format(val))
+        print(f"\n删除节点 {val} 后，AVL 树为")
         print_tree(tree.root)
 
     # 初始化空 AVL 树

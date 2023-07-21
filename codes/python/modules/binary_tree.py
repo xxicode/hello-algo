@@ -51,8 +51,7 @@ def tree_to_list(root: TreeNode | None) -> list[int]:
     queue.append(root)
     res: list[int] = []
     while queue:
-        node: TreeNode | None = queue.popleft()
-        if node:
+        if node := queue.popleft():
             res.append(node.val)
             queue.append(node.left)
             queue.append(node.right)

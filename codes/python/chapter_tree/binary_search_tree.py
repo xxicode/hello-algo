@@ -71,12 +71,7 @@ class BinarySearchTree:
                 return
             pre = cur
             # 插入位置在 cur 的右子树中
-            if cur.val < num:
-                cur = cur.right
-            # 插入位置在 cur 的左子树中
-            else:
-                cur = cur.left
-
+            cur = cur.right if cur.val < num else cur.left
         # 插入节点 val
         node = TreeNode(num)
         if pre.val < num:
@@ -98,11 +93,7 @@ class BinarySearchTree:
                 break
             pre = cur
             # 待删除节点在 cur 的右子树中
-            if cur.val < num:
-                cur = cur.right
-            # 待删除节点在 cur 的左子树中
-            else:
-                cur = cur.left
+            cur = cur.right if cur.val < num else cur.left
         # 若无待删除节点，则直接返回
         if cur is None:
             return
@@ -129,6 +120,7 @@ class BinarySearchTree:
 
 
 """Driver Code"""
+
 if __name__ == "__main__":
     # 初始化二叉搜索树
     nums = list(range(1, 16))  # [1, 2, ..., 15]
@@ -138,7 +130,7 @@ if __name__ == "__main__":
 
     # 查找节点
     node = bst.search(7)
-    print("\n查找到的节点对象为: {}，节点值 = {}".format(node, node.val))
+    print(f"\n查找到的节点对象为: {node}，节点值 = {node.val}")
 
     # 插入节点
     bst.insert(16)

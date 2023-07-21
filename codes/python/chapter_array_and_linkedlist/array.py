@@ -11,9 +11,7 @@ def random_access(nums: list[int]) -> int:
     """随机访问元素"""
     # 在区间 [0, len(nums)-1] 中随机抽取一个数字
     random_index = random.randint(0, len(nums) - 1)
-    # 获取并返回随机元素
-    random_num = nums[random_index]
-    return random_num
+    return nums[random_index]
 
 
 # 请注意，Python 的 list 是动态数组，可以直接扩展
@@ -47,24 +45,15 @@ def remove(nums: list[int], index: int) -> None:
 
 def traverse(nums: list[int]) -> None:
     """遍历数组"""
-    count = 0
-    # 通过索引遍历数组
-    for i in range(len(nums)):
-        count += 1
-    # 直接遍历数组
-    for num in nums:
-        count += 1
+    count = len(nums) + len(nums)
     # 同时遍历数据索引和元素
-    for i, num in enumerate(nums):
+    for _ in nums:
         count += 1
 
 
 def find(nums: list[int], target: int) -> int:
     """在数组中查找指定元素"""
-    for i in range(len(nums)):
-        if nums[i] == target:
-            return i
-    return -1
+    return next((i for i in range(len(nums)) if nums[i] == target), -1)
 
 
 """Driver Code"""
